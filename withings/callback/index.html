@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Connecting…</title>
+<script>
+  // Forwards the Withings login result to the private letsgo server on the owner's tailnet.
+  // Only the "code", "state" and "error" values are passed on; the destination is fixed.
+  (function () {
+    var src = new URLSearchParams(location.search);
+    var out = new URLSearchParams();
+    ['code', 'state', 'error', 'error_description'].forEach(function (k) { if (src.has(k)) out.set(k, src.get(k)); });
+    if ([...out.keys()].length) {
+      location.replace('https://wheresmyrice.taildef3e3.ts.net/auth/withings/callback?' + out.toString());
+    }
+  })();
+</script>
+</head>
+<body style="font:16px -apple-system,system-ui,sans-serif;padding:24px">
+<p>Connecting to letsgo…</p>
+</body>
+</html>
